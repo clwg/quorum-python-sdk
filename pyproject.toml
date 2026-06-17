@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quorum-bot"
+version = "0.1.0"
+description = "Python SDK for building Quorum chat bots"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "Apache-2.0"
+authors = [{ name = "Quorum" }]
+keywords = ["quorum", "chat", "bot", "grpc"]
+dependencies = [
+    # protobuf is pinned to 7.x: the checked-in bindings under quorum/v1 are
+    # generated with protoc/protobuf 7.x and validate the runtime version on
+    # import. Regenerate (see README) if you need to move this.
+    "grpcio>=1.74",
+    "protobuf>=7.35.1",
+]
+
+[project.optional-dependencies]
+# Regenerating the protobuf bindings locally without buf.
+dev = ["grpcio-tools>=1.74"]
+
+[project.urls]
+Homepage = "https://github.com/clwg/quorum-python-sdk"
+"Quorum server" = "https://github.com/clwg/quorum"
+
+[tool.setuptools]
+# The generated bindings (quorum, quorum.v1) ship alongside the SDK (quorum_bot).
+packages = ["quorum", "quorum.v1", "quorum_bot"]

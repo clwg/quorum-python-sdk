@@ -1,0 +1,10 @@
+version: v2
+# Generates the Python protobuf/gRPC bindings into ./quorum/v1.
+# Run with: buf generate   (or: make gen)
+plugins:
+  - remote: buf.build/protocolbuffers/python
+    out: .
+  - remote: buf.build/protocolbuffers/pyi
+    out: .
+  - remote: buf.build/grpc/python
+    out: .
